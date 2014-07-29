@@ -1,0 +1,27 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>us.penrose</groupId>
+	<artifactId>whatever</artifactId>
+	<version>0.0.1</version>
+	    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.cj.qunit.mojo</groupId>
+                <artifactId>qunit-maven-plugin</artifactId>
+                <version>2.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                	<webPathToRequireDotJsConfig>/config.js</webPathToRequireDotJsConfig>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
