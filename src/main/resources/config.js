@@ -1,8 +1,9 @@
 require = {
-
     baseUrl : "/",
-    paths : {
-        "some" : "some/v1.0"
+    paths : {"jquery": "lib/jquery-1.11.1.min"},
+    shims : {
+        jquery:{
+            exports:"$"
+        }
     }
-
 };

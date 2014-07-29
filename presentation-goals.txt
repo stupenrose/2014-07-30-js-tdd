@@ -1,0 +1,18 @@
+Fast & Maintainable Javascript TDD: A Working Approach
+------------------------------------------------------
+
+Goals:
+   - Give the attendees a flavor of how good TDD works in general
+       - test first
+       - the red/green/refactor flow
+   - Give attendees a taste of how robust javascript code can be written with realtime feedback tooling
+       - jshint, qunit & watchrun
+   - Give attendees a taste of how a UI can be built using components & blackbox testing
+   - Show off some of the tools we use
+   - Show how /refactorable/ code can be when using blackbox testing
+   
+ Attendees should walk away ...
+    ... convinced that it is possible to TDD non-trivial apps without sacrificing workflow & productivity
+   
+   
+ 

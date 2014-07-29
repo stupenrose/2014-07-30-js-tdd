@@ -1,0 +1,11 @@
+GET /elections
+  [{"name":"foo"}]
+  
+GET /elections/foo
+  {"name":"foo"}
+  
+PUT /vote?voter=Stu&election=foo
+  [{"rank":3,"candidate":"Fred"},{"rank":2,"candidate":"Sam"},{"rank":1,"candidate":"Sally"}]
+  
+GET /places/foo
+  [["Fred", "Sam"],["Sally"]]
