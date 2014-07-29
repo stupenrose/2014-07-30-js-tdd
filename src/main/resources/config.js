@@ -1,8 +1,8 @@
-require={
+require = {
 
-        baseUrl: "/",
-        paths: {
-            "some": "some/v1.0"
-        }
+    baseUrl : "/",
+    paths : {
+        "some" : "some/v1.0"
+    }
 
 };
