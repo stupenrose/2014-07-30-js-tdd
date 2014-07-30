@@ -23,7 +23,7 @@
 						<exclude>src/main/resources/lib</exclude>
 					</excludes>
 					<version>2.4.1</version>
-					<options>maxparams:3,camelcase,eqeqeq,forin,immed,latedef,noarg,noempty,nonew</options>
+					<options>camelcase,eqeqeq,forin,immed,latedef,noarg,noempty,nonew</options>
 					<globals>require,$</globals>
 					<failOnError>true</failOnError>
 				</configuration>

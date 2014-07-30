@@ -4,7 +4,10 @@ GET /elections
 GET /elections/foo
   {"name":"foo"}
   
-PUT /vote?voter=Stu&election=foo
+GET /vote?voter=Andrew&election=foo
+  [{"candidate":"Fred"},{"candidate":"Sam"},{"candidate":"Sally"}]
+  
+PUT /vote?voter=Andrew&election=foo
   [{"rank":3,"candidate":"Fred"},{"rank":2,"candidate":"Sam"},{"rank":1,"candidate":"Sally"}]
   
 GET /places/foo
