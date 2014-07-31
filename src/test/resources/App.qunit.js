@@ -74,4 +74,51 @@ define(["App"], function(App){
         equal(votingScreenOptions.election, "tastiest fruit");
     });
     
+    
+
+    test("posts results to server when 'vote' button is pressed", function(){
+        // given a login screen
+        var view = $("<div/>");
+        var votingScreenOptions;
+        var simulateLogin, simulateElectionSelect;
+        var fakeElectionsScreenConstructor = function(opts){
+            opts.view.append("I am the elections screen");
+            simulateElectionSelect = opts.onSelect;
+        };
+        var dataSent;
+        var methodSent;
+        var fakeHttp = function(method, url, data){
+            methodSent = method;
+            dataSent = data;
+            urlSent = url;
+        };
+
+        var fakeLoginScreenConstructor = function(view, onLogin){
+            view.append("I am the login screen");
+            simulateLogin = onLogin;
+        };
+        var fakeVotingScreen = function(opts){
+            opts.view.append("I am the voting screen");
+            votingScreenOptions = opts;
+            
+        };
+        var app = App({
+            view:view, 
+            ElectionsScreen:fakeElectionsScreenConstructor,  
+            LoginScreen:fakeLoginScreenConstructor,
+            VotingScreen:fakeVotingScreen,
+            Http:fakeHttp});
+        
+        simulateLogin("sally");
+        simulateElectionSelect("stuff");
+        
+        // when you submit a vote
+        votingScreenOptions.onVote([{iAmA:"json-object"}]);
+        
+        // then the vote should be submitted to the server
+        deepEqual(dataSent, [{iAmA:"json-object"}]);
+        equal(urlSent, "/vote?voter=sally&election=stuff");
+        equal(methodSent, "PUT");
+    });
+    
 });

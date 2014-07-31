@@ -1,15 +1,20 @@
 define(["jquery"], function($){
     
-    return function(method, url){
+    return function(method, url, data){
         var result;
         
-        $.ajax(url, {
-            method:method,
-            async:false,
-            success:function(data){
-                result = data;
-            }
-        });
+        var opts = {
+                url:url,
+                type:method,
+                async:false,
+                data:JSON.stringify(data),
+                contentType:"application/json",
+                success:function(data){
+                    result = data;
+                }
+            };
+        
+        $.ajax(opts);
         
         return result;
         

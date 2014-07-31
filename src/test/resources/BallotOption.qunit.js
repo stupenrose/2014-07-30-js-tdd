@@ -9,7 +9,7 @@ define(["BallotOption"], function(BallotOption){
         BallotOption({view:view, name:candidate});
         
         // then
-        equal(view.text(), candidate);
+        equal(view.text(), "trudy-+");
     });
     
     test("rank is zero by default", function(){
@@ -25,16 +25,41 @@ define(["BallotOption"], function(BallotOption){
         deepEqual({candidate:"trudy", rank:0}, result);
     });
     
-    test("rank is zero by default", function(){
+    test("pressing the + button increments the rank", function(){
         // given
         var candidate = "trudy";
         var view = $("<div/>");
         var testSubject = BallotOption({view:view, name:candidate});
-        
+
+        $("body").append(view); // hack!!
         // when
-        var result = testSubject.getSelection();
+        view.find(".plus-button").click();
         
         // then
-        deepEqual({candidate:"trudy", rank:0}, result);
+        var result = testSubject.getSelection();
+        deepEqual({candidate:"trudy", rank:1}, result);
+        var width = view.find(".green-bar").css("width");
+        equal(width, "10px");
+    });
+    
+    test("pressing the - button increments the rank", function(){
+        // given
+        var candidate = "trudy";
+        var view = $("<div/>");
+        var testSubject = BallotOption({view:view, name:candidate});
+        view.find(".plus-button").click();
+        view.find(".plus-button").click();
+        view.find(".plus-button").click();
+
+        $("body").append(view); // hack!!
+        
+        // when
+        view.find(".minus-button").click();
+        
+        // then
+        var result = testSubject.getSelection();
+        deepEqual({candidate:"trudy", rank:2}, result);
+        var width = view.find(".green-bar").css("width");
+        equal(width, "20px");
     });
 });

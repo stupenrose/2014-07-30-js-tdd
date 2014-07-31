@@ -1,4 +1,4 @@
-define(["jquery", "LoginScreen", "util", "ElectionsScreen", "VotingScreen"], function($, LoginScreen, util, ElectionsScreen, VotingScreen){
+define(["jquery", "LoginScreen", "util", "ElectionsScreen", "VotingScreen", "Http"], function($, LoginScreen, util, ElectionsScreen, VotingScreen, Http){
 
     return function App(opts){
         var 
@@ -6,11 +6,23 @@ define(["jquery", "LoginScreen", "util", "ElectionsScreen", "VotingScreen"], fun
             makeLoginScreen = util.getOrDefault(opts, "LoginScreen", LoginScreen),
             makeElectionsScreen = util.getOrDefault(opts, "ElectionsScreen", ElectionsScreen),
             makeVotingScreen = util.getOrDefault(opts, "VotingScreen", VotingScreen),
-            currentUser;
+            http = util.getOrDefault(opts, "Http", Http),
+            currentUser, 
+            currentElectionName;
+        
+        
+        function submitVote(selections){
+            http("PUT", "/vote?voter=" + currentUser + "&election=" + currentElectionName, selections);
+        }
         
         function handleElectionSelection(electionName){
             view.empty();
-            makeVotingScreen({view: view, user:currentUser, election:electionName});
+            currentElectionName = electionName;
+            makeVotingScreen({
+                    view: view, 
+                    user:currentUser, 
+                    election:electionName,
+                    onVote:submitVote});
         }
         
         function handleLoginSelection(user){
