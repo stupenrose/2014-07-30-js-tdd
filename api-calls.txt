@@ -3,7 +3,7 @@ GET /elections
   
 GET /elections/foo
   {"name":"foo"}
-  
+
 GET /vote?voter=Andrew&election=foo
   [{"candidate":"Fred"},{"candidate":"Sam"},{"candidate":"Sally"}]
   

@@ -14,7 +14,11 @@ define(["VotingScreen"], function(VotingScreen){
         };
         
         // when: the ballot is displayed
-        VotingScreen({user:"Andrew", election:"foo", view:view, Http:fakeHttp, BallotOption:fakeBallotOptionConstructor});
+        VotingScreen({user:"Andrew", 
+                      election:"foo", 
+                      view:view, 
+                      Http:fakeHttp, 
+                      BallotOption:fakeBallotOptionConstructor});
         
         // then: all the options are visible
         var options = view.find(".fake-option");

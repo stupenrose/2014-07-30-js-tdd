@@ -1,7 +1,7 @@
-define(["util", "Http"], function(util, Http){
+define(["util", "Http", "BallotOption"], function(util, Http, BallotOption){
     return function VotingScreen(opts){
         var http = util.getOrDefault(opts, "Http", Http);
-        var makeBallotOption = util.getOrDefault(opts, "BallotOption", undefined);
+        var makeBallotOption = util.getOrDefault(opts, "BallotOption", BallotOption);
         
         var candidates = http("GET", "/vote?voter=" + opts.user + "&election=" + opts.election);
         var widgets = $.map(candidates, function(candidate){
